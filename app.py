@@ -1,4 +1,3 @@
-
 from flask import Flask, request, jsonify,make_response
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -54,50 +53,5 @@ class Products(Resource):
 
 api.add_resource(Products, '/products')
 
-from models import db, Transaction
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///transactions.db'
-
-class Transactions(Resource):
-    def get(self):
-        transactions_dict_list = [d.to_dict() for d in Transaction.query.all()]
-        response = make_response(
-            jsonify(transactions_dict_list),
-            200,
-        )
-        return response
-
-    def post(self):
-        transactions = []
-        for data in request.json:
-            product_name = data['product_name']
-            product_quantity = data['product_quantity']
-            product_price = data['product_price']
-
-            new_transaction = Transaction(
-                product_name=product_name,
-                product_quantity=product_quantity,
-                product_price=product_price,
-            )
-
-            db.session.add(new_transaction)
-            transactions.append(new_transaction)
-
-        db.session.commit()
-
-        transaction_dicts = [transaction.to_dict() for transaction in transactions]
-
-        response = make_response(
-            jsonify(transaction_dicts),
-            201
-        )
-
-        return response
-
-api.add_resource(Transactions, '/transactions')
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
-
-
