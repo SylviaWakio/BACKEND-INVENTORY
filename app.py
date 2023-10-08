@@ -27,14 +27,14 @@ class Products(Resource):
     def post(self):
         products = []
         for data in request.json:
-            name = data['product_name']
-            quantity = data['product_quantity']
-            price = data['product_price']
+            name = data['name']
+            quantity = data['quantity']
+            price = data['price']
 
             new_product = Product(
-                product_name=name,
-                product_quantity=quantity,
-                product_price=price,
+                name=name,
+                quantity=quantity,
+                price=price,
             )
 
             db.session.add(new_product)
