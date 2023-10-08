@@ -20,7 +20,8 @@ app.config['SECRET_KEY'] = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQ
 # database name
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-# creates SQLALCHEMY object
+# creates SQLALCHEMY objectes
+#helps you create instances
 db = SQLAlchemy(app)
 
 # Database ORMs
