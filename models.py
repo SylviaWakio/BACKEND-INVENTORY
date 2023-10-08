@@ -7,6 +7,7 @@ db = SQLAlchemy()
 
 eat_timezone = pytz.timezone('Africa/Nairobi')
 
+
 class Transaction(db.Model, SerializerMixin):
     __tablename__ = 'transactions'
 
@@ -15,3 +16,13 @@ class Transaction(db.Model, SerializerMixin):
     product_quantity = db.Column(db.Integer, nullable=False)
     product_price = db.Column(db.Float, nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.now(tz=eat_timezone))
+
+class Product(db.Model, SerializerMixin):
+    __tablename__ = 'products'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String, nullable=False)
+    quantity = db.Column(db.Integer,nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.now(tz=eat_timezone))
+
