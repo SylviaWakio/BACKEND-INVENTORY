@@ -15,6 +15,7 @@ faker = "*"
 flask-cors = "*"
 flask-migrate = "*"
 
+
 [dev-packages]
 
 [requires]
